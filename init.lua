@@ -2,6 +2,7 @@ require "usb"
 require "wifi"
 require "lua_funcs"
 
+
 -- suppress warnings
 hs.luaSkinLog.setLogLevel("warning")
 hs.hotkey.setLogLevel("warning")
@@ -37,12 +38,15 @@ hs.fnutils.each({
     hs.hotkey.bind(hyper, item.key, appActivation)
   end)
 
-hs.timer.doAt("0:00","1m", function() 
-  local d = hs.execute("/Users/ruchir/bin/osx-cpu-temp -f"):gsub("[\r\n]","")
-  menu_bar:setTitle(d)
-end)
-    local menu_bar = hs.menubar.new()
-    menu_bar:setTitle(d)
+
+local menubar = hs.menubar.new()
+    function menu_temp()
+        cpu_temps = firstThree( hs.execute("/usr/local/bin/osx-cpu-temp") )
+        menubar:setTitle(cpu_temps)
+    end
 
 hs.alert.show("Config loaded 👍")
+
+menu_temp()
+hs.timer.doEvery(30,menu_temp)
 
