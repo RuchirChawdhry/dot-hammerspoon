@@ -48,5 +48,11 @@ local menubar = hs.menubar.new()
 hs.alert.show("Config loaded 👍")
 
 menu_temp()
-hs.timer.doEvery(30,menu_temp)
+hs.timer.doEvery(30, menu_temp)
+
+local localsnapshot = function()
+    hs.execute('tmutil localsnapshot')
+end
+
+hs.timer.doEvery(21600, localsnapshot)
 
