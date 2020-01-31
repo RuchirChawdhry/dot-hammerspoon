@@ -1,6 +1,7 @@
 require "usb"
 require "wifi"
 require "lua_funcs"
+require "menu_cpu_temp"
 
 
 -- suppress warnings
@@ -11,7 +12,6 @@ hs.window.filter.setLogLevel("error")
 -- hyper
 hyper = {'shift', 'ctrl', 'alt', 'cmd'}
 
--- even though the app is named iTerm2, iterm is the correct name
 -- hs.hotkey.bind({"alt"}, "H", chrome_active_tab_with_name("HipChat"))
 
 -- bind application hotkeys
@@ -38,21 +38,12 @@ hs.fnutils.each({
     hs.hotkey.bind(hyper, item.key, appActivation)
   end)
 
-
-local menubar = hs.menubar.new()
-    function menu_temp()
-        cpu_temps = firstThree( hs.execute("/usr/local/bin/osx-cpu-temp") )
-        menubar:setTitle(cpu_temps)
-    end
-
 hs.alert.show("Config loaded 👍")
 
-menu_temp()
-hs.timer.doEvery(30, menu_temp)
-
-local localsnapshot = function()
+localsnapshot = function()
     hs.execute('tmutil localsnapshot')
-end
+    end
 
-hs.timer.doEvery(21600, localsnapshot)
-
+-- timers
+snapshopt_timer = hs.timer.new(hs.timer.minutes(120), localsnapshot)
+snapshopt_timer:start()
