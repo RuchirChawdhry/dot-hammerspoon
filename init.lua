@@ -3,25 +3,30 @@ require "wifi"
 require "lua_funcs"
 require "menu_cpu_temp"
 
+-- ## speed menu:
+-- local speed_menu = hs.loadSpoon("SpeedMenu")
+-- speed_menu:init()
+-- speed_menu:start()
 
 -- suppress warnings
 hs.luaSkinLog.setLogLevel("warning")
 hs.hotkey.setLogLevel("warning")
 hs.window.filter.setLogLevel("error")
 
--- hyper
-hyper = {'shift', 'ctrl', 'alt', 'cmd'}
+-- hyper key
+hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
--- hs.hotkey.bind({"alt"}, "H", chrome_active_tab_with_name("HipChat"))
-
--- bind application hotkeys
+--s application hotkeys
 hs.fnutils.each({
-    { key = "a", app = "Visual Studio Code" },
-    { key = "s", app = "Google Chrome" },
+    { key = "a", app = "Visual Studio Code" }, 
+    { key = "s", app = "Google Chrome" }, 
     { key = "]", app = "System Preferences" },
     { key = "e", app = "Sublime Text" },
-    { key = "i", app = "IINA" },
-    { key = "t", app = "TickTick" },
+    { key = "f", app = "Finder" },
+    { key = "g", app = "Fork" }, -- git
+    { key = "i", app = "IINA" }, -- video viewer
+    { key = "m", app = "Marta" }, -- finder alt.
+    { key = "t", app = "Todoist" },
 	{ key = "z", app = "iTerm" },
   }, function(item)
 
