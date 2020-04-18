@@ -1,12 +1,14 @@
+-- lua basics:
+--    - http://tylerneylon.com/a/learn-lua/
+--    - http://luatut.com/crash_course.html
+--    - https://ebens.me/post/lua-for-programmers-part-1/
+--    - https://ebens.me/post/lua-for-programmers-part-2/
+--    - https://ebens.me/post/lua-for-programmers-part-4/
+--    - https://somedudesays.com/2019/07/lua-tutorial-basics/
+
 require "usb"
 require "wifi"
-require "lua_funcs"
-require "menu_cpu_temp"
-
--- ## speed menu:
--- local speed_menu = hs.loadSpoon("SpeedMenu")
--- speed_menu:init()
--- speed_menu:start()
+require "menus"
 
 -- suppress warnings
 hs.luaSkinLog.setLogLevel("warning")
@@ -16,7 +18,7 @@ hs.window.filter.setLogLevel("error")
 -- hyper key
 hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
---s application hotkeys
+-- application hotkeys
 hs.fnutils.each({
     { key = "a", app = "Visual Studio Code" }, 
     { key = "s", app = "Google Chrome" }, 
@@ -44,11 +46,3 @@ hs.fnutils.each({
   end)
 
 hs.alert.show("Config loaded 👍")
-
-localsnapshot = function()
-    hs.execute('tmutil localsnapshot')
-    end
-
--- timers
-snapshopt_timer = hs.timer.new(hs.timer.minutes(120), localsnapshot)
-snapshopt_timer:start()
