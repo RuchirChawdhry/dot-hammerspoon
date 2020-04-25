@@ -13,6 +13,6 @@ menus.menuTemp = function()
 end
 
 -- Refresh Menu Timers
-local tempMenuTimer = hs.timer.doEvery(20, menus.menuTemp)
+tempMenuTimer = hs.timer.doEvery(20, menus.menuTemp)
 
 return menus

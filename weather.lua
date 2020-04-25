@@ -2,7 +2,7 @@ local urlApi = 'https://www.tianqiapi.com/api/?version=v1'
 local menubar = hs.menubar.new()
 local menuData = {}
 
-local weaEmoji = {
+local weatherEmoji = {
    lei = '⚡️',
    qing = '☀️',
    shachen = '😷',
@@ -17,9 +17,10 @@ local weaEmoji = {
 }
 
 function updateMenubar()
-	 menubar:setTooltip("Weather Info")
-    menubar:setMenu(menuData)
+   menubar:setTooltip("Weather Info")
+   menubar:setMenu(menuData)
 end
+
 
 function getWeather()
    hs.http.doAsyncRequest(urlApi, "GET", nil,nil, function(code, body, htable)
